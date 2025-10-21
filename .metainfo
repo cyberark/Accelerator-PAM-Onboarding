@@ -1,0 +1,5 @@
+{
+    "name":"Accelerator-PAM-Onboarding",
+    "github":"https://github.com/cyberark/Accelerator-PAM-Onboarding",
+    "description":"Illustrates onboarding of AWS credentials to Privilege Cloud and retrieval from Conjur."
+}
