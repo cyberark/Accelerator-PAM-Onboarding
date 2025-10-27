@@ -1,5 +1,3 @@
-TEMPLATE: 
-
 Copyright (c) 2025 CyberArk Software Ltd. All rights reserved
 
 Accelerator PAM Onboarding is using the following open source components:
