@@ -4,7 +4,7 @@
 
 <!--
 Author:   David Hisel <david.hisel@cyberark.com>
-Updated:  <2023-10-02 16:31:19 david.hisel>
+Updated:  <2025/10/29 15:40:40>
 -->
 
 **NOTE: "IT Toolshed" is intended as a front-end for DEMO purposes only.**
@@ -289,27 +289,28 @@ json Legend {
 
 ## License
 
-        Copyright (c) 2023 CyberArk Software Ltd. All rights reserved.
-        
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-        
-           http://www.apache.org/licenses/LICENSE-2.0
-        
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-        
-For the full license text see [`LICENSE`](LICENSE).
+```text
+Copyright (c) 2025 CyberArk Software Ltd. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+For the full license text see [LICENSE](LICENSE).
 
 ## Contributing
 
 We welcome contributions of all kinds to this repository. For instructions on how to get started and descriptions of our development workflows, please see our [contributing
 guide](https://github.com/cyberark/conjur/blob/master/CONTRIBUTING.md).
-
 
 ## References
 
