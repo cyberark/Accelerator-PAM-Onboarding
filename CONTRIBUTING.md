@@ -1,33 +1,6 @@
-<!-- omit in toc -->
-# Contributing Guidelines
+# Contributing
 
-For general contribution and community guidelines, please see the [community
-repo](https://github.com/cyberark/community). In particular, before contributing
-please review our [contributor licensing
-guide](https://github.com/cyberark/community/blob/main/CONTRIBUTING.md#when-the-repo-does-not-include-the-cla) to
-ensure your contribution is compliant with our contributor license agreements.
-
-<!-- omit in toc -->
-## Table of Contents
-
-- [Development](#development)
-- [Testing](#testing)
-- [Releases](#releases)
-- [Contributing](#contributing)
-
-## Development
-
-See [README.md](README.md) section "Prerequisites"
-
-## Testing
-
-No test suite, this is an accelerator.
-
-## Releases
-
-No releases, this is an accelerator
-
-## Contributing
+For general contribution and community guidelines, please see the [community repo](https://github.com/cyberark/community). In particular, before contributing please review our [contributor licensing guide](https://github.com/cyberark/community/blob/main/CONTRIBUTING.md#reviewing-license-requirements) to ensure your contribution is compliant with our contributor license agreements.
 
 1. [Fork the project](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
 2. [Clone your fork](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
