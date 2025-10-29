@@ -1,7 +1,5 @@
-# Contributing
-
-[Are you accepting contributions at this time? If not, please state that here.
-No need to include content from the rest of this document.]
+<!-- omit in toc -->
+# Contributing Guidelines
 
 For general contribution and community guidelines, please see the [community
 repo](https://github.com/cyberark/community). In particular, before contributing
@@ -9,6 +7,7 @@ please review our [contributor licensing
 guide](https://github.com/cyberark/community/blob/main/CONTRIBUTING.md#when-the-repo-does-not-include-the-cla) to
 ensure your contribution is compliant with our contributor license agreements.
 
+<!-- omit in toc -->
 ## Table of Contents
 
 - [Development](#development)
@@ -18,15 +17,15 @@ ensure your contribution is compliant with our contributor license agreements.
 
 ## Development
 
-[What development tools are required to start working on this project?]
+See [README.md](README.md) section "Prerequisites"
 
 ## Testing
 
-[Instructions for running the test suite]
+No test suite, this is an accelerator.
 
 ## Releases
 
-[Instructions for creating a new release]
+No releases, this is an accelerator
 
 ## Contributing
 
