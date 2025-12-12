@@ -4,7 +4,7 @@
 
 <!--
 Author:   David Hisel <david.hisel@cyberark.com>
-Updated:  <2025/12/12 14:34:53>
+Updated:  <2025/12/12 14:58:21>
 -->
 
 **NOTE: "IT Toolshed" is intended as a front-end for DEMO purposes only.**
@@ -309,11 +309,12 @@ For the full license text see [LICENSE](LICENSE).
 
 ## License and third-party packages
 
-This repository provides only build instructions and/or prerequisites, and example
-configurations. It does not include or redistribute any third-party software. When
-you build the container in accordance with this repository, this can cause your
-environment to download third-party packages from external repositories under their
-respective licenses. Please review those licenses as applicable.
+This repository provides only build instructions, prerequisites, example configurations,
+scripts, and/or usage instructions. It does not include or redistribute any third-party
+software. When you build the container or follow the scripts or instructions in accordance
+with this repository, this can cause your environment to download or interact with
+third-party packages from external repositories under their respective licenses.
+Please review those licenses as applicable.
 
 # Contributing
 
