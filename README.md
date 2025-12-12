@@ -4,7 +4,7 @@
 
 <!--
 Author:   David Hisel <david.hisel@cyberark.com>
-Updated:  <2025/10/29 15:40:40>
+Updated:  <2025/12/12 14:34:53>
 -->
 
 **NOTE: "IT Toolshed" is intended as a front-end for DEMO purposes only.**
@@ -13,7 +13,7 @@ Updated:  <2025/10/29 15:40:40>
 
 This repo contains example code as a guide to help with the following scenarios.
 
-* Automating the storage of credentials after a provisioning event.  E.g. automating saving of EC2 credentials into PAS Vault after the EC2 instance has been provisioned.
+* Automating the storage of credentials after a provisioning event.  E.g. automating saving of EC2 credentials into PAM Vault after the EC2 instance has been provisioned.
 * How to setup Conjur to connect without hard coding credentials in a config file.  E.g. Using the Conjur AWS authenticator to fetch credentials from Conjur without storing Conjur user's credentials, rather, this setup will use an AWS Role that Conjur is configured to recognize when a client is authenticating.
 
 ## Prerequisites
@@ -23,11 +23,11 @@ To use this solution accelerator, you will need:
 * An AWS account
   * AWS User -- used for provisioning an EC2 instance
   * AWS Role -- used for Conjur AWS Authenticator
-* CyberArk PAS Vault created and ready to go
+* CyberArk PAM Vault created and ready to go
   * Safe to store provisioner credentials
   * Safe to store the newly created credentials
 * CyberArk Conjur Cloud account
-  * PAS Vault sync enabled
+  * PAM Vault sync enabled
   * AWS Authenticator configured and enabled
 * Access to a Demo Host -- Optimal demo experience, run this from an EC2 instance
 * GO lang compiler, v1.21
@@ -37,13 +37,13 @@ To use this solution accelerator, you will need:
 
 1. AWS User with permissions to Create Tags, Create Key Pairs, and Create EC2 instances.
    1. Create AWS Key and Secret credentials to be used for the "Provisioning" of resources.  E.g. these creds will be used to provision a new keypair and new ec2 instance.
-   2. Store these credentials in your PAS Vault, and ensure they are synchronized to Conjur.
+   2. Store these credentials in your PAM Vault, and ensure they are synchronized to Conjur.
 2. ARN for the AWS Role to assign to your EC2 demo host.
    * Bind this role to the EC2 instance where you run this demo code from.
    * **OR**
    * IF running from NON EC2 host, like a linux or mac machine, then setup the AWS CLI to run as a user that can ***AssumeRole*** to the role created above.
 
-### -Required- CyberArk PAS Vault
+### -Required- CyberArk PAM Vault
 
 1. Create a safe for storing the Provider credentials.  The AWS Key and Secret created above in step 1 should be stored here.  These creds will be synchronized to Conjur and read from Conjur.
 2. **Safe Name** -- Create a safe for storing the new resource's account information.  This safe will be where the new EC2 instance creds will be stored.  Only the safe needs to be created, and **the credentials to access the safe will be entered in the toolshed UI**.  This simulates the developer requesting the resource to be created, and then the developer enters their safe's credentials.
@@ -52,7 +52,7 @@ To use this solution accelerator, you will need:
 
 1. Create an AWS User with permissions associated to Conjur for "authn-iam" connector
    * Create Access Key and Secret for this user
-   * Store these credentials in your PAS Vault safe
+   * Store these credentials in your PAM Vault safe
 2. Install Conjur IAM Authenticator
    * See the `./etc` directory for example setup.
    * See the `load-policies.sh` script for an example of how to load the policies.
@@ -60,7 +60,7 @@ To use this solution accelerator, you will need:
    * (Optional) `./etc/iam-check.py` script can help with
      troubleshooting the Conjur AWS Authenticator configuration.
 
-3. Enable PAS Vault sync
+3. Enable PAM Vault sync
 
 ## Demo Setup and Usage
 
@@ -77,7 +77,7 @@ It is recommended to run this demo from an EC2 instance.  This demo can be run f
 
 This section will describe the contents of the fields for each of the configuration files.
 
-#### PAS Config File
+#### PAM Config File
 
 Copy the example config file, `./cmd/provengine/pasconfig-example.toml` with name `./cmd/provengine/pasconfig.toml`
 
@@ -89,7 +89,7 @@ Here is what the example looks like.
 # Cloud Identity Portal (ID Tenant where the user is managed)
 idtenanturl = "https://IDENTITY_TENANT_ID.id.cyberark.cloud"
 
-# Safe owner/user must enter PAS Vault user/pass in Toolshed UI
+# Safe owner/user must enter PAM Vault user/pass in Toolshed UI
 
 # Privilege Cloud (Where the Vault-safe is located)
 pcloudurl = "https://example-demo-toolshed.privilegecloud.cyberark.cloud"
@@ -99,8 +99,8 @@ safename = "toolshed-safe1"
 | Field Name | Description | Required For Scenario 1 | Required For Scenario 2 |
 | -- | -- | -- | -- |
 | idtenanturl | Cloud Identity Portal (ID Tenant where the user is managed) | YES | YES |
-| pcloudurl | This is the base url to your PAS instance; no trailing slash | YES | YES |
-| safename | This is the name of the PAS Vault safe that you created as part of the pre-requisites.  NOTE: This is where the NEW EC2 creds will be stored. | YES | YES |
+| pcloudurl | This is the base url to your PAM instance; no trailing slash | YES | YES |
+| safename | This is the name of the PAM Vault safe that you created as part of the pre-requisites.  NOTE: This is where the NEW EC2 creds will be stored. | YES | YES |
 
 #### AWS Config File
 
@@ -219,7 +219,7 @@ Provisioner -> Provider: (with Provider creds) Request resource
 Provider -> Provider: Create resource
 Provider -> Provisioner: Send Resource Details
 Provisioner -> ProvEngine: Send Resource Details
-ProvEngine -> ProvEngine: Store New Resource\ndetails in PAS Vault
+ProvEngine -> ProvEngine: Store New Resource\ndetails in PAM Vault
 @enduml
 ```
 -->
@@ -244,13 +244,13 @@ Provisioner -> Provider: (with Provider creds) Request resource
 Provider -> Provider: Create resource
 Provider -> Provisioner: Send Resource Details
 Provisioner -> ProvEngine: Send Resource Details
-ProvEngine -> ProvEngine: Store New Resource\ndetails in PAS Vault
+ProvEngine -> ProvEngine: Store New Resource\ndetails in PAM Vault
 @enduml
 ```
 -->
 ![Scenario 2 Diagram](images/Scenario2Diagram.svg)
 
-There are 2 apps that comprise this demo, the "ITSM App" and the "Provision Engine."   The "ITSM App" provides an intake form for an application developer to make a request for a resource.  The "Provision Engine" will accept the request, call the Provider to request resources to be created, and then store the new resource information in the PAS Vault safe.
+There are 2 apps that comprise this demo, the "ITSM App" and the "Provision Engine."   The "ITSM App" provides an intake form for an application developer to make a request for a resource.  The "Provision Engine" will accept the request, call the Provider to request resources to be created, and then store the new resource information in the PAM Vault safe.
 
 Under `cmd/toolshed` is the app that provides a web server app to provide the intake form and forward the request to the provision engine.
 
@@ -273,14 +273,14 @@ AppDev -right-> [Toolshed]
 [ProvEngine] <-up- [Provider Creds\n(Local FIle)]: (2) Load creds
 [ProvEngine] -down-> [Provider]: (3) Request\nResource
 [ProvEngine] <-down- [Provider]: (4) Send\nResource\nDetails
-[ProvEngine] -down-> [PASVault]: (5) Add\nAccount
+[ProvEngine] -down-> [PAMVault]: (5) Add\nAccount
 
 json Legend {
  "Toolshed": "ITSM App\n(Ex: ServiceNow)",
  "ProvEngine": "Provision Engine\n(Ex: in-house app)",
  "Provisioner": "Provisioner\n(Ex: Terraform)",
  "Provider": "Provider\n(Ex: AWS)",
- "PASVault": "PAS Vault"
+ "PAMVault": "PAM Vault"
 }
 @enduml
 ```
@@ -307,15 +307,25 @@ limitations under the License.
 
 For the full license text see [LICENSE](LICENSE).
 
-## Contributing
+## License and third-party packages
 
-We welcome contributions of all kinds to this repository. For instructions on how to get started and descriptions of our development workflows, please see our [contributing
-guide](https://github.com/cyberark/conjur/blob/master/CONTRIBUTING.md).
+This repository provides only build instructions and/or prerequisites, and example
+configurations. It does not include or redistribute any third-party software. When
+you build the container in accordance with this repository, this can cause your
+environment to download third-party packages from external repositories under their
+respective licenses. Please review those licenses as applicable.
 
+# Contributing
+
+We welcome contributions of all kinds to this repository. For instructions on how to get started and descriptions of our development workflows, please see our guides.
+
+* [Contributing](CONTRIBUTING.md)
+* [Security Policies and Procedures](SECURITY.md)
+  
 ## References
 
-* [PAS Vault Add Account](https://docs.cyberark.com/PAS/Latest/en/Content/WebServices/Add%20Account%20v10.htm)
-* [PAS Vault REST API doc](https://docs.cyberark.com/Product-Doc/OnlineHelp/PAS/Latest/en/Content/WebServices/Implementing%20Privileged%20Account%20Security%20Web%20Services%20.htm?tocpath=Developer%7CREST%20APIs%7C_____0)
+* [PAM Vault Add Account](https://docs.cyberark.com/PAS/Latest/en/Content/WebServices/Add%20Account%20v10.htm)
+* [PAM Vault REST API doc](https://docs.cyberark.com/Product-Doc/OnlineHelp/PAS/Latest/en/Content/WebServices/Implementing%20Privileged%20Account%20Security%20Web%20Services%20.htm?tocpath=Developer%7CREST%20APIs%7C_____0)
 
 ## Footnotes
 
